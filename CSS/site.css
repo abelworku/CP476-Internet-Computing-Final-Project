@@ -7,7 +7,7 @@ context or relation to other document tree elements)
 */
 
 .main {
-    width: 1024px; 
+    width: 1200px; 
     margin: auto; 
 }
 
@@ -38,8 +38,19 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-.navigationBar h1 { 
+.navigationBar h1 {
     font-size: 35px;
     display: inline-block;
     padding: 5px;
+    padding-left: 10px;
+}
+
+
+.navigationBarLinks {
+    float: right;
+    padding: 18px 15px;
+}
+
+.fadeSlide {
+    display: none;
 }
