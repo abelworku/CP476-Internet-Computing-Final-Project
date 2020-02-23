@@ -1,1 +1,45 @@
 /* The future site for the site.css. Coming soon... */ 
+
+/*
+Notes: 
+    - CSS styles target HTML elements with selectors (ex. contextual selectors select elements based on their 
+context or relation to other document tree elements)
+*/
+
+.main {
+    width: 1024px; 
+    margin: auto; 
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    background-color: whitesmoke;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Prata', serif;
+}
+
+.navigationBar {
+    background-color: white;
+    overflow: hidden;
+    padding: 15px 15px;
+
+}
+
+.navigationBar a { 
+    float: right; 
+    padding: 18px 15px;
+    color: black; 
+    font-family: 'Prata', serif;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navigationBar h1 { 
+    font-size: 35px;
+    display: inline-block;
+    padding: 5px;
+}
