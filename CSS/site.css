@@ -30,7 +30,7 @@ context or relation to other document tree elements)
         
 }
 
-.carouselContainer {
+.mainContainer {
     padding: 35px;
 }
 
@@ -55,4 +55,28 @@ context or relation to other document tree elements)
     height: 50px;
     border: none;
     width: 50px;
+}
+.text-center p, .text-center h4, .text-center a, .text-center .cardTitle {
+    font-family: 'Lato', sans-serif; 
+/*    font-weight: 800;*/
+/*    font-size: 20px;*/
+}
+
+
+.card-title {
+    font-size: 50px;
+}
+
+.card-text {
+    font-size: 20px;
+}
+
+.card-link {
+    font-size: 20px
+}
+
+
+
+.card {
+    margin-top: 40px;
 }
