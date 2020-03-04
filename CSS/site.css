@@ -90,7 +90,16 @@ context or relation to other document tree elements)
     border-radius: 30px;
 }
 
-.customerServiceCountry {
+/*
+.specialHighlightTitle {
     font-weight: bold;
     font-size: 20px;
+}
+*/
+
+
+
+.page-footer {
+    padding-left: 50px;
+    padding-right: 50px;
 }
