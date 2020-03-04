@@ -78,5 +78,19 @@ context or relation to other document tree elements)
 
 
 .card {
+    padding-left: 100px;
+    padding-right: 100px;
     margin-top: 40px;
+    border-radius: 30px;
+}
+
+
+
+.carouselImage {
+    border-radius: 30px;
+}
+
+.customerServiceCountry {
+    font-weight: bold;
+    font-size: 20px;
 }
