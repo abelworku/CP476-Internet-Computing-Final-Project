@@ -13,7 +13,7 @@ context or relation to other document tree elements)
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 20px; 
 }
 
 .navbar-nav {
@@ -39,5 +39,4 @@ context or relation to other document tree elements)
 .page-footer {
     padding-left: 50px;
     padding-right: 50px;
-}
-
+} 
