@@ -116,7 +116,7 @@
                     
                     <div class="d-flex flex-row flex-nowrap pb-3 homeHorizontalRow">
                         
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
                                     
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
                                     
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
                                     
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                                      
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
 
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
 
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-3">
+                        <div class="col-sm-12 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-body">
 
