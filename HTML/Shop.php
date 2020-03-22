@@ -27,55 +27,10 @@
 
     <body class="bg-light">
         <div class="container-fluid bg-white">
-            <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand font-weight-bold" href="Home.html">Whimsy</a>
-
-                
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Shop.html">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="About.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Team.html">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Testimonials.html">Testimonials</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="FAQ.html">FAQ</a> 
-                    </li>
-                    
-                </ul>
-            </nav>
-
-            <div class="border-top my-3"></div>
-    
-            <div class="mainContainer">
-                
-<!--
-                <div class="card-deck">
-                    <div class="card">
-                       <img class="card-img-top" src="../Images/shop/pogo_stick_boots.jpg" alt="Pogo stick boots">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Supporting information</p>
-                            
-                        </div> 
-                    
-                    </div>
-                
-                </div>
--->
-                
+            
+            <?php include '../PHP/header.php';?>
+            
+            <div class="mainContainer">                
                 
                 <div class="row">
                     <div class="col-sm-3">
