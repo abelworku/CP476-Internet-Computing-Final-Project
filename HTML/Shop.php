@@ -1,3 +1,18 @@
+<?php 
+
+include '../PHP/config.php';
+
+//your code for connecting to database, etc. goese here
+$connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+
+$connectionError = mysqli_connect_error(); 
+if ($connectionError != null) { 
+    $output = "<p>Detected an error. Not able to connect to the database</p>" . $connectionError;
+    exit($output); 
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,99 +47,145 @@
             
             <div class="mainContainer">                
                 
-                <div class="row">
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/pogo_stick_boots.jpg" alt="Pogo stick boots">
-                        <div class="card-body">
-                            <h5 class="card-title">Pogo-Stick Boots</h5>
-                            <p class="card-text">Guaranteed to give you at least 20 metres of clearance from sea-level, these pogo stick boots are a new addition to our lineup of gadgetry apparel. Equipped with state-of-the-art absorption springs, you'll feel a new spring in your step in time for our spring catalogue! Machine wash cold. Tumble dry only. No ironing required. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
+                <!--Search form-->
+                <form class="mb-4" style="padding-left: 10%; padding-right: 10%;">
+                    <div class="form-row mb-3">
+                        <div class="col-sm-12 col-md-4">
+                            <h1 class="display-4 text-center">Category</h1>
                         </div>
+                        <div class="col-sm-12 col-md-4">
+                            <h1 class="display-4 text-center">Price</h1>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <h1 class="display-4 text-center">Rating</h1>
+                        </div>
+                        
                     </div>
                     
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/hot_air_balloon.jpg" alt="Hot air balloon">
-                        <div class="card-body">
-                            <h5 class="card-title">Hot Air Balloon</h5>
-                            <p class="card-text">Gridlock. Rush hour. Traffic congestion. These are but a few symptoms of traditional vehicular transport systems. With our inflatable motorless vehicle, you'll be able to bring the cloud to your step. Infused with our patented helium formula, our hot air balloon will allow you to coast past traffic in style. Comes in 3 different colours. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
+                    <div class="form-row mb-3">
+                        <div class="col-sm-12 col-md-4">
+                            <select class="custom-select" name="category">
+                                <option selected value="0">All Categories</option>
+
+                                <?php  
+                                    $sql = "
+                                    SELECT CategoryID, CategoryName 
+                                    FROM Category
+                                    ";
+
+                                    if ($result = mysqli_query($connection, $sql)) { 
+
+                                        while ($row = mysqli_fetch_assoc($result)) { 
+                                            echo "<option value='" . $row['CategoryID'] . "'>" . $row['CategoryName'] . "</option>";
+                                        }
+
+                                    } 
+
+
+                                ?>
+
+                            </select>
                         </div>
-                    
+                        
+                        <div class="col-sm-12 col-md-4"> 
+                            <select class="custom-select" name="price">
+                                <option selected value="0">All Prices</option>
+                                <option value="1">Under $50</option>
+                                <option value="2">$50 to $150</option>
+                                <option value="3">$150 to $500</option>
+                            
+                            </select>
+                            
+                        </div>
+                        
+                        <div class="col-sm-12 col-md-4">
+                            <select class="custom-select" name="rating">
+                                <option selected value="0">All Ratings</option>
+                                <option value="1">3 Stars and Below</option>
+                                <option value="2">4 Stars</option>
+                                <option value="3">5 Stars</option>
+                            
+                            </select>                            
+                        </div>    
                     </div>
                     
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/propeller_umbrella.jpg" alt="Hot air balloon">
-                        <div class="card-body">
-                            <h5 class="card-title">Propeller Umbrella</h5>
-                            <p class="card-text">Shorten your walking distance by picking up this rotor-powered, all-electric marvel of personal aviation! Equipped with GPS and a suite of spatial sensors, you can send your navigational directions via bluetooth on your phone and our propeller umbrella will whisk you to your destination! Caution - may not shelter a passenger completely from any form of precipitation. 1 passenger only. Lasts for 20 minutes on a single charge. While supplies last. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
+                    <div class="form-row text-center">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-lg font-weight-light mt-4 px-4 py-2">Search</button>
                         </div>
-                    
+                        
                     </div>
+
+                </form> <!-- Search form --> 
+                
+                <div class="border-top mb-5 mt-5 ml-5 mr-5"></div>
+
+               
+                <div class="px-5">
+                
                     
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/pogo_stick_boots.jpg" alt="Pogo stick boots">
-                        <div class="card-body">
-                            <h5 class="card-title">Pogo-Stick Boots</h5>
-                            <p class="card-text">Guaranteed to give you at least 20 metres of clearance from sea-level, these pogo stick boots are a new addition to our lineup of gadgetry apparel. Equipped with state-of-the-art absorption springs, you'll feel a new spring in your step in time for our spring catalogue! Machine wash cold. Tumble dry only. No ironing required. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
-                        </div>
-                    </div>
+                    <!--Product List -->
+                    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+
+                        <?php
+
+                        if (empty($_GET['category']) && empty($_GET['price']) && empty($_GET['rating'])) { 
+                            $sql = "
+                                SELECT Name, Description, ImageFileName, Price, ProductID
+                                FROM Products
+                                LIMIT 50
+                            ";
+
+                            if ($result = mysqli_query($connection, $sql)) { 
+                                while ($row = mysqli_fetch_assoc($result)) { 
+                                ?>
+                                <div class="col mb-4">
+                                    <div class="card shopCard">
+                                        <a href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                            <img src="../Images/shop/<?php echo $row['ImageFileName'];      /* ImageFileName */     ?>.jpg" class="card-img-top">
+                                        </a>
+                                        
+                                        <div class="card-body">
+                                            
+                                            <h5 class="card-title">
+                                                <a href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>" id="shopTitleLink">
+                                                    <?php echo $row['Name'];     /* Name */   ?>
+                                                </a>
+                                            </h5>
+                                            
+                                            <h6 class="card-subtitle mb-2 text-muted">CDN $<?php echo $row['Price'];     /* Price */   ?></h6>
+
+                                            <p class="card-text text-truncate"><?php echo $row['Description'];    /* Description */   ?></p>
+
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                                    Shop
+                                                </button>
+
+                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
+                                                    Add to Wish List
+                                                </button>
+
+                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <?php 
+                                }
+                            }
+                        }
+                        ?> 
+
+
+
+                    </div> <!-- Product list --> 
                     
                 </div>
-                
-                
-                <div class="row">
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/pogo_stick_boots.jpg" alt="Pogo stick boots">
-                        <div class="card-body">
-                            <h5 class="card-title">Hot Air Balloon</h5>
-                            <p class="card-text">Gridlock. Rush hour. Traffic congestion. These are but a few symptoms of traditional vehicular transport systems. With our inflatable motorless vehicle, you'll be able to bring the cloud to your step. Infused with our patented helium formula, our hot air balloon will allow you to coast past traffic in style. Comes in 3 different colours. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
-                        </div>
-                    </div>
-                    
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/hot_air_balloon.jpg" alt="Hot air balloon">
-                        <div class="card-body">
-                            <h5 class="card-title">Propeller Umbrella</h5>
-                            <p class="card-text">Shorten your walking distance by picking up this rotor-powered, all-electric marvel of personal aviation! Equipped with GPS and a suite of spatial sensors, you can send your navigational directions via bluetooth on your phone and our propeller umbrella will whisk you to your destination! Caution - may not shelter a passenger completely from any form of precipitation. 1 passenger only. Lasts for 20 minutes on a single charge. While supplies last. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
-                        </div>
-                    
-                    </div>
-                    
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/propeller_umbrella.jpg" alt="Hot air balloon">
-                        <div class="card-body">
-                            <h5 class="card-title">Pogo-Stick Boots</h5>
-                            <p class="card-text">Guaranteed to give you at least 20 metres of clearance from sea-level, these pogo stick boots are a new addition to our lineup of gadgetry apparel. Equipped with state-of-the-art absorption springs, you'll feel a new spring in your step in time for our spring catalogue! Machine wash cold. Tumble dry only. No ironing required. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
-                        </div>
-                    
-                    </div>
-                    
-                    <div class="col-sm-3">
-                        <img class="card-img-top" src="../Images/shop/hot_air_balloon.jpg" alt="Pogo stick boots">
-                        <div class="card-body">
-                            <h5 class="card-title">Hot Air Balloon</h5>
-                            <p class="card-text">Gridlock. Rush hour. Traffic congestion. These are but a few symptoms of traditional vehicular transport systems. With our inflatable motorless vehicle, you'll be able to bring the cloud to your step. Infused with our patented helium formula, our hot air balloon will allow you to coast past traffic in style. Comes in 3 different colours. 
-                            </p>
-                            <button type="button" class="btn btn-dark">Add To Cart</button>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                
-                
+
         
             </div>            
             
