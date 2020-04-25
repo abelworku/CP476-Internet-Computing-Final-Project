@@ -23,6 +23,11 @@
         <link href="../CSS/home.css" rel="stylesheet">
         <script type="text/javascript" src="../JavaScript/script.js"></script>
         
+        <style>
+            <?php include('../CSS/general.css') ?>
+            <?php include('../CSS/home.css') ?>
+        </style> 
+        
     </head>
     
     <body class="bg-light">
@@ -117,79 +122,91 @@
                     <div class="d-flex flex-row flex-nowrap pb-3 homeHorizontalRow">
                         
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
                                     
                                     <h5 class="card-title">Apparel</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
-                            
+                                    
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=1&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
                                     
                                     <h5 class="card-title">Aviation</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
-
+                                    
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=2&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
                                     
                                     <h5 class="card-title">Luxury</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
                                     
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=3&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                                      
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
 
                                     <h5 class="card-title">Motor</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
-
+                                    
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=4&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
 
                                     <h5 class="card-title">Décor</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
-
+                                    
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=5&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-sm-12 col-md-4 col-lg-3">
-                            <div class="card">
+                            <div class="card homeShopCard">
                                 <div class="card-body">
 
                                     <h5 class="card-title">Accessories</h5> 
                                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-dark stretched-link">Shop</a>
-
+                                    
+                                    <div class="text-center">
+                                        <a href="Shop.php?category=6&price=0&rating=0" class="btn btn-dark stretched-link">Shop</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -33,7 +33,7 @@
 
 .shopCard:hover {
     filter: brightness(97%); 
-    transform: scale(1.01);
+    transform: scale(1.01); 
 }
 
 #shopTitleLink {

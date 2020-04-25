@@ -78,3 +78,20 @@
     font-size: 20px
 }
 
+
+.homeShopCard {
+    transition: background-color 0.22s ease;
+/*    transition: transform .4s;*/
+/*    transform: translateZ(0);*/
+}
+
+.homeShopCard:hover {
+    
+/*    filter: brightness(97%); */
+/*    transform: scale(1.01); */
+    color: whitesmoke; 
+    background-color: #464a4e; 
+
+}
+
+
