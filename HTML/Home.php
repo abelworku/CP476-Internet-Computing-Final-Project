@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,7 +25,7 @@
 
         <link href="../CSS/general.css" rel="stylesheet">
         <link href="../CSS/home.css" rel="stylesheet">
-        <script type="text/javascript" src="../JavaScript/script.js"></script>
+<!--        <script type="text/javascript" src="../JavaScript/script.js"></script>-->
         
         <style>
             <?php include('../CSS/general.css') ?>
@@ -37,6 +41,15 @@
             <?php include '../PHP/header.php';?>
             
             <div class="mainContainer"> <!-- Main container -->
+                
+                <?php 
+                    if ($_SESSION['userName'] != "") { 
+                        echo "<h1 class='font-weight-light text-center mb-5 mt-n3'>"; 
+                        echo "We're so glad to see you again, " . $_SESSION['userName'] . "!";
+                        echo "</h1>"; 
+                    }
+                ?>
+                
                 <div id="carouselSlideshow" class="carousel slide" data-ride="carousel" data-interval="false">
                 
                     <div class="carousel-inner">
@@ -62,7 +75,7 @@
                             </div>
                             
                             <div class="carousel-caption d-none d-md-block rounded-right">
-                                <button type="button" class="btn btn-light btn-lg btn-outline-dark">Shop Now</button>
+                                <a href="Shop.php" class="btn btn-light btn-lg btn-outline-dark">Shop Now</a>
                             </div>    
                                 
                         </div>
@@ -80,6 +93,12 @@
                     </a>
                 
                 </div>           
+                
+                <blockquote class="blockquote text-center px-5 my-5">
+                    <p class="mb-0">"Our imagination is the only limit to what we can hope to have in the future."</p>
+                    <footer class="blockquote-footer">Charles Kettering</footer>
+                </blockquote>                
+                
                 
                 <div class="card homeCard bg-light">
                     <div class="row no-gutters h-100">
@@ -287,7 +306,13 @@
                             
             </div>
             
+            <script>
+                $(document).ready(function() { 
+                    $(".nav-item").removeClass("active"); 
+                    $("#headerHomeLink").addClass("active");
+                });
             
+            </script>
             
         </div>
     </body>

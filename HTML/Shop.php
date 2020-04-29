@@ -1,8 +1,11 @@
 <?php 
+    session_start();
+?>
+
+<?php 
 
 include '../PHP/config.php';
 
-//your code for connecting to database, etc. goese here
 $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 
 $connectionError = mysqli_connect_error(); 
@@ -36,7 +39,7 @@ if ($connectionError != null) {
 
         <link href="../CSS/general.css" rel="stylesheet">
         <link href="../CSS/shop.css" rel="stylesheet">
-        <script type="text/javascript" src="../JavaScript/script.js"></script>
+<!--        <script type="text/javascript" src="../JavaScript/script.js"></script>-->
         
         <style>
             <?php include('../CSS/general.css') ?>
@@ -148,7 +151,7 @@ if ($connectionError != null) {
                                 ?>
                                 <div class="col mb-4">
                                     <div class="card shopCard">
-                                        <a href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                        <a href="ProductPage.php?productID=<?php echo $row['ProductID'];   /* ProductID */     ?>">
                                             <img src="../Images/shop/<?php echo $row['ImageFileName'];      /* ImageFileName */     ?>.jpg" class="card-img-top">
                                         </a>
                                         
@@ -165,16 +168,30 @@ if ($connectionError != null) {
                                             <p class="card-text text-truncate"><?php echo $row['Description'];    /* Description */   ?></p>
 
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                                <a class="btn btn-light btn-outline-dark mb-1" href="ProductPage.php?productID=<?php echo $row['ProductID'];   /* ProductID */     ?>">
                                                     Shop
+                                                </a>
+
+                                                <button type="button" 
+                                                        data-toggle="popover" 
+                                                        data-trigger="focus" 
+                                                        title="Success!" 
+                                                        data-content="This item has just been added to your wish list." 
+                                                        data-placement="top" 
+                                                        class="btn btn-light btn-outline-dark mb-1 addToWishListButton"
+                                                        href="<?php echo $row['ProductID']; ?>">
+                                                        Add to Wish List
                                                 </button>
 
-                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
-                                                    Add to Wish List
-                                                </button>
-
-                                                <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
-                                                    Add to Cart
+                                                <button type="button" 
+                                                        data-toggle="popover" 
+                                                        data-trigger="focus" 
+                                                        title="Success!" 
+                                                        data-content="This item has just been added to your cart. We can't wait for you to enjoy it soon!" 
+                                                        data-placement="top"
+                                                        class="btn btn-light btn-outline-dark mb-1 addToCartButton"
+                                                        href="<?php echo $row['ProductID']; ?>">
+                                                        Add to Cart
                                                 </button>
                                             </div>
                                         </div>
@@ -670,14 +687,14 @@ if ($connectionError != null) {
                                     ?>
                                     <div class="col mb-4">
                                         <div class="card shopCard">
-                                            <a href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                            <a href="ProductPage.php?productID=<?php echo $row['ProductID'];   /* ProductID */     ?>">
                                                 <img src="../Images/shop/<?php echo $row['ImageFileName'];      /* ImageFileName */     ?>.jpg" class="card-img-top">
                                             </a>
 
                                             <div class="card-body">
 
                                                 <h5 class="card-title">
-                                                    <a href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>" id="shopTitleLink">
+                                                    <a href="ProductPage.php?productID=<?php echo $row['ProductID'];   /* ProductID */     ?>" id="shopTitleLink">
                                                         <?php echo $row['Name'];     /* Name */   ?>
                                                     </a>
                                                 </h5>
@@ -687,16 +704,30 @@ if ($connectionError != null) {
                                                 <p class="card-text text-truncate"><?php echo $row['Description'];    /* Description */   ?></p>
 
                                                 <div class="text-center">
-                                                    <button type="button" class="btn btn-light btn-outline-dark mb-1" href="product-page.php?<?php echo $row['ProductID'];   /* ProductID */     ?>">
-                                                        Shop
+                                                    <a class="btn btn-light btn-outline-dark mb-1" href="ProductPage.php?productID=<?php echo $row['ProductID'];   /* ProductID */     ?>">
+                                                    Shop
+                                                    </a>
+
+                                                    <button type="button" 
+                                                            data-toggle="popover" 
+                                                            data-trigger="focus" 
+                                                            title="Success!" 
+                                                            data-content="This item has just been added to your wish list." 
+                                                            data-placement="top" 
+                                                            class="btn btn-light btn-outline-dark mb-1 addToWishListButton"
+                                                            href="<?php echo $row['ProductID']; ?>">
+                                                            Add to Wish List
                                                     </button>
 
-                                                    <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
-                                                        Add to Wish List
-                                                    </button>
-
-                                                    <button type="button" class="btn btn-light btn-outline-dark mb-1" href="#">
-                                                        Add to Cart
+                                                    <button type="button" 
+                                                            data-toggle="popover" 
+                                                            data-trigger="focus" 
+                                                            title="Success!" 
+                                                            data-content="This item has just been added to your cart. We can't wait for you to enjoy it soon!" 
+                                                            data-placement="top"
+                                                            class="btn btn-light btn-outline-dark mb-1 addToCartButton"
+                                                            href="<?php echo $row['ProductID']; ?>">
+                                                            Add to Cart
                                                     </button>
                                                 </div>
                                             </div>
@@ -747,7 +778,55 @@ if ($connectionError != null) {
                             
             </div>
             
-                
+            
+            <script>
+                $(document).ready(function() {
+                    $(".addToWishListButton").popover();
+                    $(".addToCartButton").popover();
+                                 
+                    
+                    $(".addToWishListButton").on("click", function() { 
+                        $(this).attr('id', 'specialPopoverWishListElement'); 
+                        $productID = $(this).attr('href'); 
+
+
+                        var wishListResponse = $.get("../PHP/addItemToWishList.php?productID=" + $productID); 
+
+//                        $('#specialPopoverElement').popover('show'); 
+
+                        wishListResponse.done( 
+                            function() { 
+                                $('#specialPopoverWishListElement').popover('show'); 
+                            }
+                        );
+                        $(this).removeAttr("id");
+                    });   
+                    
+                    $(".addToCartButton").on("click", function() {
+                        $(this).attr('id', 'specialPopoverCartElement'); 
+                        $productID = $(this).attr('href');
+                        
+
+
+                        var cartResponse = $.get("../PHP/addItemToCart.php?productID=" + $productID); 
+
+//                        $('.addToCartButton').popover('show'); 
+
+                        cartResponse.done( 
+                            function() { 
+                                $('#specialPopoverCartElement').popover('show'); 
+                            }
+                        );
+                        $(this).removeAttr("id");
+                    });
+                    
+                    
+                    $(".nav-item").removeClass("active"); 
+                    $("#headerShopLink").addClass("active"); 
+                    
+                });
+            
+            </script>    
                 
         </div>
     </body>
